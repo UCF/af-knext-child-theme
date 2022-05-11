@@ -3,7 +3,7 @@
 $post = isset( $post ) ? $post : get_queried_object();
 
 if ( $post->post_name === 'finance-hr-accordions' ) :
-
+	?><p>Here</p><?php
 	if( have_rows('finance_repeater') ): ?>
 
 	<div id="finance-accordion" class="repeater-container my-5">
