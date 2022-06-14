@@ -2,11 +2,11 @@
 // Theme variables and variable overrides
 //
 @import 'variables';
-@import './font-awesome-4/scss/font-awesome';
+/*@import './font-awesome-4/scss/font-awesome';
 @import './@fortawesome/fontawesome-free/scss/fontawesome';
 @import './@fortawesome/fontawesome-free/scss/brands';
 @import './@fortawesome/fontawesome-free/scss/solid';
-@import './@fortawesome/fontawesome-free/scss/regular';
+@import './@fortawesome/fontawesome-free/scss/regular';*/
 
 
 //
@@ -27,3 +27,7 @@
 
 // Add/import your theme's custom styles here
 // ...
+
+#menu-item-124 > a {
+  text-transform: none;
+}
