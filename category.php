@@ -17,9 +17,9 @@
 		<div class="col-9">
 			<?php if ( have_posts() ): ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body">
+					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-4">
 						<!-- Title -->
-						<h2 class="ucf-workday-item-title d-block stretched-link text-decoration-none h5 mb-2 pb-1">
+						<h2 class="ucf-workday-item-title d-block text-decoration-none h5 mb-2 pb-1">
 							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h2>
 						<!-- Post categories -->
