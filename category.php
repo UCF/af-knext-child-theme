@@ -17,15 +17,27 @@
 		<div class="col-9">
 			<?php if ( have_posts() ): ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-					<article class="<?php echo $post->post_status; ?> post-list-item mb-4">
-						<h2 class="h3">
+					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body">
+						<!-- Title -->
+						<h2 class="ucf-workday-item-title d-block stretched-link text-decoration-none h5 mb-2 pb-1">
 							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h2>
-						<div class="meta">
-							<span class="date text-muted text-uppercase letter-spacing-3"><?php the_time( 'F j, Y' ); ?></span>
-						</div>
-						<div class="summary">
+						<!-- Post categories -->
+						<?php
+						$categories = get_the_category();
+						if ($categories) {
+							foreach ($categories as $category) {
+								echo '<span class="ucf-workday-section-category badge badge-primary">' . esc_html($category->name) . '</span> ';
+							}
+						}
+						?>
+						<!-- Excerpt -->
+						<div class="ucf-workday-item-excerpt font-size-sm">
 							<?php the_excerpt(); ?>
+						</div>
+						<!-- Date -->
+						<div class="meta">
+							<span class="date text-muted text-uppercase letter-spacing-3 font-size-sm"><?php the_time( 'F j, Y' ); ?></span>
 						</div>
 					</article>
 				<?php endwhile; ?>
