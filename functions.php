@@ -34,14 +34,21 @@ add_action('after_setup_theme', 'af_knext_theme_register_menus');
 
 function my_custom_menu_item_classes($classes, $item, $args, $depth) {
     if ('category-menus' === $args->theme_location) {
-        $classes[] = 'nav-item my-1 pl-3 d-block'; // Add your custom class
+        $classes[] = 'nav-item my-1 d-block'; // Add your custom class
     }
 
-    //Check if nav item is General, Finance, or HR, and modify styles
+
+
+    //Array for special nav items
     $special_items = array('General', 'Finance', 'Human Resources');
 
+    //Add custom class to non-special nav items
+    if ('category-menus' === $args->theme_location && !in_array($item->title, $special_items)) {
+    	$classes[] = ' pl-3 '; // Add custom class
+    }
+
+    //Add custom class to special nav items
     if ('category-menus' === $args->theme_location && in_array($item->title, $special_items)) {
-        $classes = array_diff($classes, array('pl-3')); // Remove 'pl-3' class
         $classes[] = 'bg-inverse'; // Add 'bg-inverse' class
     }
 
