@@ -23,7 +23,38 @@ function af_knext_theme_register_menus() {
 }
 add_action('after_setup_theme', 'af_knext_theme_register_menus');
 
+/**
+ * Add CSS classes to category-menu li items
+ *
+ * @since 0.2.1
+ * @author Mike Setzer
+ **/
 
+function my_custom_menu_item_classes($classes, $item, $args, $depth) {
+    if ('category-menus' === $args->theme_location) {
+        $classes[] = 'nav-item my-1 d-block'; // Add your custom class
+    }
+
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'my_custom_menu_item_classes', 10, 4);
+
+
+/**
+ * Add CSS classes to category-menu anchor items
+ *
+ * @since 0.2.1
+ * @author Mike Setzer
+ **/
+
+function my_custom_menu_link_attributes($atts, $item, $args, $depth) {
+    if ('category-menus' === $args->theme_location) {
+        $atts['class'] = isset($atts['class']) ? $atts['class'] . ' nav-link' : 'nav-link'; // Add your custom class
+    }
+
+    return $atts;
+}
+add_filter('nav_menu_link_attributes', 'my_custom_menu_link_attributes', 10, 4);
 
 
 /**
