@@ -17,10 +17,10 @@
 		<div class="col-9">
 			<?php if ( have_posts() ): ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-4">
+					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-4 position-relative">
 						<!-- Title -->
 						<h3>
-							<a class="ucf-workday-item-title d-block text-decoration-none h5 mb-2 pb-1" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+							<a class="ucf-workday-item-title d-block text-decoration-none h5 mb-2 pb-1 stretched-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h3>
 						<!-- Post categories -->
 						<?php
@@ -28,7 +28,7 @@
 						if ($categories) {
 							foreach ($categories as $category) {
 								$category_link = get_category_link($category->term_id);
-								echo '<span class="ucf-workday-section-category badge badge-primary"><a class="text-decoration-none text-primary" href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a></span> ';
+								echo '<span class="ucf-workday-section-category badge badge-primary"><a class="text-decoration-none text-secondary" href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a></span> ';
 							}
 						}
 						?>
