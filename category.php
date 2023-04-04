@@ -8,7 +8,7 @@
 			<?php wp_nav_menu(array(
 				'theme_location' => 'category-menus',
 				'container' => 'nav',
-				'container_class' => 'flex-column nav-pills',
+				'container_class' => 'flex-column nav-pills pl-0',
 				'menu_id' => 'wpt-menu'
 			)); ?>
 		</div>

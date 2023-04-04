@@ -9,6 +9,7 @@ include_once KNEXT_THEME_DIR . 'includes/config.php';
 include_once KNEXT_THEME_DIR . 'includes/meta.php';
 
 // Add other includes to this file as needed.
+
 /**
  * Register category-menus menu location
  *
@@ -23,6 +24,7 @@ function af_knext_theme_register_menus() {
 }
 add_action('after_setup_theme', 'af_knext_theme_register_menus');
 
+
 /**
  * Add CSS classes to category-menu li items
  *
@@ -32,7 +34,15 @@ add_action('after_setup_theme', 'af_knext_theme_register_menus');
 
 function my_custom_menu_item_classes($classes, $item, $args, $depth) {
     if ('category-menus' === $args->theme_location) {
-        $classes[] = 'nav-item my-1 d-block'; // Add your custom class
+        $classes[] = 'nav-item my-1 pl-3 d-block'; // Add your custom class
+    }
+
+    //Check if nav item is General, Finance, or HR, and modify styles
+    $special_items = array('General', 'Finance', 'Human Resources');
+
+    if ('category-menus' === $args->theme_location && in_array($item->title, $special_items)) {
+        $classes = array_diff($classes, array('pl-3')); // Remove 'pl-3' class
+        $classes[] = 'bg-inverse'; // Add 'bg-inverse' class
     }
 
     return $classes;
@@ -50,6 +60,14 @@ add_filter('nav_menu_css_class', 'my_custom_menu_item_classes', 10, 4);
 function my_custom_menu_link_attributes($atts, $item, $args, $depth) {
     if ('category-menus' === $args->theme_location) {
         $atts['class'] = isset($atts['class']) ? $atts['class'] . ' nav-link' : 'nav-link'; // Add your custom class
+    }
+
+    //Check if nav item is General, Finance, or HR, and modify styles
+    $special_items = array('General', 'Finance', 'Human Resources');
+
+    if ('category-menus' === $args->theme_location && in_array($item->title, $special_items)) {
+        $existing_classes = isset($atts['class']) ? $atts['class'] : '';
+        $atts['class'] = $existing_classes . ' text-inverse'; // Add 'text-inverse' class
     }
 
     return $atts;
