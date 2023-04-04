@@ -19,15 +19,16 @@
 				<?php while ( have_posts() ) : the_post(); ?>
 					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-4">
 						<!-- Title -->
-						<h2 class="ucf-workday-item-title d-block text-decoration-none h5 mb-2 pb-1">
-							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-						</h2>
+						<h3>
+							<a class="ucf-workday-item-title d-block text-decoration-none h5 mb-2 pb-1" ref="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+						</h3>
 						<!-- Post categories -->
 						<?php
 						$categories = get_the_category();
 						if ($categories) {
 							foreach ($categories as $category) {
-								echo '<span class="ucf-workday-section-category badge badge-primary">' . esc_html($category->name) . '</span> ';
+								$category_link = get_category_link($category->term_id);
+								echo '<span class="ucf-workday-section-category badge badge-primary"><a href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a></span> ';
 							}
 						}
 						?>
