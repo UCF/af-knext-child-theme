@@ -10,6 +10,23 @@ include_once MYPROJECT_THEME_DIR . 'includes/meta.php';
 
 // Add other includes to this file as needed.
 /**
+ * Register category-menus menu location
+ *
+ * @since 0.2.1
+ * @author Mike Setzer
+ **/
+
+function af_knext_theme_register_menus() {
+    register_nav_menus(array(
+        'category-menus' => __('Category Menus', 'af-knext-child-theme')
+    ));
+}
+add_action('after_setup_theme', 'af_knext_theme_register_menus');
+
+
+
+
+/**
  * Add custom "Workday" list layout for UCF Post List shortcode
  *
  * @since 0.2.1
