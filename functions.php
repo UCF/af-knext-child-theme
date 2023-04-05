@@ -39,7 +39,7 @@ function my_custom_menu_item_classes($classes, $item, $args, $depth) {
     }
 
     //Array for special nav items
-    $special_items = array('General', 'Finance', 'Human Resources');
+    $special_items = array('General', 'Finance', 'Human Resources', 'All Posts', 'Top Priority');
 
     //Add custom class to non-special nav items
     if ('category-menus' === $args->theme_location && !in_array($item->title, $special_items)) {
@@ -70,7 +70,7 @@ function my_custom_menu_link_attributes($atts, $item, $args, $depth) {
     }
 
     //Check if nav item is General, Finance, or HR, and modify styles
-    $special_items = array('General', 'Finance', 'Human Resources');
+    $special_items = array('General', 'Finance', 'Human Resources', 'All Posts', 'Top Priority');
 
     if ('category-menus' === $args->theme_location && in_array($item->title, $special_items)) {
         $existing_classes = isset($atts['class']) ? $atts['class'] : '';
