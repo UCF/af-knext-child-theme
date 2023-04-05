@@ -1,10 +1,11 @@
 <?php get_header(); ?>
 
-<div class="container mt-4 mb-5 pb-sm-4">
+<div class="container mt-5 mb-5 pb-sm-4">
 	<div class="row">
 
 		<!-- Left menu -->
 		<div class="col-3">
+			<h3 class="h5 mb-3">Categories</h3>
 			<?php wp_nav_menu(array(
 				'theme_location' => 'category-menus',
 				'container' => 'nav',
@@ -15,6 +16,7 @@
 
 		<!-- Right side: List of posts -->
 		<div class="col-9">
+			<h2 class="heading-underline mb-4 text-secondary"><?php single_cat_title(); ?> Posts</h2>
 			<?php if ( have_posts() ): ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-4 position-relative">
