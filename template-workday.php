@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Workday Product Tracker
+ * Template Name: Workday Progress Tracker
  * Template Post Type: page, post
  */
 ?>
