@@ -25,6 +25,7 @@ function af_knext_theme_register_menus() {
 add_action('after_setup_theme', 'af_knext_theme_register_menus');
 
 
+
 /**
  * Add CSS classes to category-menu li items
  *
@@ -36,8 +37,6 @@ function my_custom_menu_item_classes($classes, $item, $args, $depth) {
     if ('category-menus' === $args->theme_location) {
         $classes[] = 'nav-item my-1 d-block'; // Add your custom class
     }
-
-
 
     //Array for special nav items
     $special_items = array('General', 'Finance', 'Human Resources');
@@ -55,6 +54,7 @@ function my_custom_menu_item_classes($classes, $item, $args, $depth) {
     return $classes;
 }
 add_filter('nav_menu_css_class', 'my_custom_menu_item_classes', 10, 4);
+
 
 
 /**
@@ -80,6 +80,7 @@ function my_custom_menu_link_attributes($atts, $item, $args, $depth) {
     return $atts;
 }
 add_filter('nav_menu_link_attributes', 'my_custom_menu_link_attributes', 10, 4);
+
 
 
 /**

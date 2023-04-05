@@ -10,7 +10,8 @@
 				'theme_location' => 'category-menus',
 				'container' => 'nav',
 				'container_class' => 'flex-column nav-pills pl-0',
-				'menu_id' => 'wpt-menu'
+				'menu_id' => 'wpt-menu',
+				'menu_class' => 'pl-0'
 			)); ?>
 		</div>
 
