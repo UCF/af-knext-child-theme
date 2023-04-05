@@ -84,6 +84,20 @@ add_filter('nav_menu_link_attributes', 'my_custom_menu_link_attributes', 10, 4);
 
 
 /**
+ * Enable excerpt field for Advanced Post Creation
+ *
+ * @since 0.2.1
+ * @author Mike Setzer
+ **/
+
+add_filter( 'gform_advancedpostcreation_excerpt', 'enable_excerpt', 10, 1 );
+function enable_excerpt( $enable_excerpt ){
+	return true;
+}
+
+
+
+/**
  * Add custom "Workday" list layout for UCF Post List shortcode
  *
  * @since 0.2.1
