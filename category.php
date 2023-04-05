@@ -20,30 +20,30 @@
 			<h2 class="heading-underline mb-4 text-secondary"><?php single_cat_title(); ?> Posts</h2>
 			<?php if ( have_posts() ): ?>
 				<?php while ( have_posts() ) : the_post(); ?>
-					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-4 position-relative">
+					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-5 position-relative">
 						<!-- Title -->
 						<h3>
 							<a class="ucf-workday-item-title d-block text-decoration-none h5 mb-2 pb-1 stretched-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h3>
+						<!-- Date -->
+						<div class="meta">
+							<span class="date text-muted text-uppercase letter-spacing-3 font-size-sm mb-2"><?php the_time( 'F j, Y' ); ?></span>
+						</div>
 						<!-- Excerpt -->
-						<div class="ucf-workday-item-excerpt font-size-sm mb-2">
+						<div class="ucf-workday-item-excerpt font-size-sm mb-1">
 							<?php the_excerpt(); ?>
 						</div>
 						<!-- Post categories -->
-						<div class="d-block mb-1">
+						<div class="d-block">
 							<?php
 							$categories = get_the_category();
 							if ($categories) {
 								foreach ($categories as $category) {
 									$category_link = get_category_link($category->term_id);
-									echo '<span class="ucf-workday-section-category badge badge-primary"><a class="text-decoration-none text-secondary" href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a></span> ';
+									echo '<span class="ucf-workday-section-category badge badge-inverse"><a class="text-decoration-none text-secondary" href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a></span> ';
 								}
 							}
 							?>
-						</div>
-						<!-- Date -->
-						<div class="meta">
-							<span class="date text-muted text-uppercase letter-spacing-3 font-size-sm"><?php the_time( 'F j, Y' ); ?></span>
 						</div>
 					</article>
 				<?php endwhile; ?>
