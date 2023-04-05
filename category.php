@@ -22,8 +22,8 @@
 				<?php while ( have_posts() ) : the_post(); ?>
 					<article class="<?php echo $post->post_status; ?> ucf-news-item-content media-body mb-5 position-relative">
 						<!-- Title -->
-						<h3>
-							<a class="ucf-workday-item-title d-block text-decoration-none h5 mb-2 pb-1 stretched-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+						<h3 class="mb-2">
+							<a class="ucf-workday-item-title d-block text-decoration-none h5 mb-0 stretched-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 						</h3>
 						<!-- Date -->
 						<div class="meta">
