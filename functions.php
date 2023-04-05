@@ -98,6 +98,56 @@ function enable_excerpt( $enable_excerpt ){
 
 
 /**
+ * Sort Gravity Forms category checkboxes hierarchically
+ *
+ * @since 0.2.2
+ * @author Mike Setzer
+ **/
+
+add_filter( 'gform_pre_render', 'sort_categories_hierarchically' );
+add_filter( 'gform_pre_validation', 'sort_categories_hierarchically' );
+add_filter( 'gform_pre_submission_filter', 'sort_categories_hierarchically' );
+add_filter( 'gform_admin_pre_render', 'sort_categories_hierarchically' );
+
+function sort_categories_hierarchically( $form ) {
+    foreach ( $form['fields'] as &$field ) {
+        if ( $field->type == 'post_category' && $field->inputType == 'checkbox' ) {
+            $categories = get_categories( array(
+                'taxonomy'   => 'category',
+                'hide_empty' => false,
+                'orderby'    => 'name',
+                'order'      => 'ASC',
+                'hierarchical' => true,
+                'parent' => 0,
+            ) );
+
+            $choices = array();
+            foreach ( $categories as $category ) {
+                $choices[] = array( 'text' => $category->name, 'value' => $category->term_id );
+                $subcategories = get_categories( array(
+                    'taxonomy'   => 'category',
+                    'hide_empty' => false,
+                    'orderby'    => 'name',
+                    'order'      => 'ASC',
+                    'hierarchical' => true,
+                    'parent' => $category->term_id,
+                ) );
+
+                foreach ( $subcategories as $subcategory ) {
+                    $choices[] = array( 'text' => '— ' . $subcategory->name, 'value' => $subcategory->term_id );
+                }
+            }
+
+            $field->choices = $choices;
+        }
+    }
+
+    return $form;
+}
+
+
+
+/**
  * Add custom "Workday" list layout for UCF Post List shortcode
  *
  * @since 0.2.1
