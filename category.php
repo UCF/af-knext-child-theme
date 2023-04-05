@@ -40,7 +40,7 @@
 							if ($categories) {
 								foreach ($categories as $category) {
 									$category_link = get_category_link($category->term_id);
-									echo '<span class="ucf-workday-section-category badge badge-inverse"><a class="text-decoration-none text-secondary" href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a></span> ';
+									echo '<span class="ucf-workday-section-category badge badge-primary"><a class="text-decoration-none text-secondary" href="' . esc_url($category_link) . '">' . esc_html($category->name) . '</a></span> ';
 								}
 							}
 							?>
