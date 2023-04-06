@@ -40,6 +40,14 @@ Note that compiled, minified css and js files are included within the repo.  Cha
 6. Make sure you've completed [all theme configuration steps](https://github.com/UCF/af-knext-child-theme/wiki/Installation#theme-configuration).
 7. Run `gulp watch` to continuously watch changes to scss and js files.  If you enabled BrowserSync in `gulp-config.json`, it will also reload your browser when scss or js files change.
 
+### Theme Parts
+
+#### Workday Progress Tracker
+1. Category pages have been customized to include the Workday Progress Tracker menu. This menu is also included in the 'template-workday.php' page template. This template is used to create pages that match the Workday Progress Tracker category style.
+2. The Workday Progress Tracker menu is specified by the category-menu location.
+3. Menu styles for the category-menu location are specified in functions.php. The 'All Posts', 'Top Priorities', 'General', 'Human Resources', and 'Finance' menu items are given different classes in functions.php.
+4. This theme customizes the Gravity Forms category field to sort checkbox items hierarchically in functions.php.
+5. Gravity Forms advanced post creation excerpts are also enabled in functions.php.
 
 ## Contributing
 
