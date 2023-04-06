@@ -106,26 +106,25 @@ function enable_excerpt( $enable_excerpt ){
 
 add_filter( 'gform_admin_pre_render', 'sort_categories_hierarchically' );
 
-function sort_categories_hierarchically( $form ) {
+function sort_categories_recursive( $parent, $separator ) {
+    $categories = get_categories( array(
+        'taxonomy'   => 'category',
+        'hide_empty' => false,
+        'parent'     => $parent,
+        'orderby'    => 'name',
+        'order'      => 'ASC'
+    ) );
 
-    function sort_categories_recursive( $parent, $separator ) {
-        $categories = get_categories( array(
-            'taxonomy'   => 'category',
-            'hide_empty' => false,
-            'parent'     => $parent,
-            'orderby'    => 'name',
-            'order'      => 'ASC'
-        ) );
-
-        $choices = array();
-        foreach ( $categories as $category ) {
-            $choices[] = array( 'text' => $separator . $category->name, 'value' => $category->term_id );
-            $choices = array_merge( $choices, sort_categories_recursive( $category->term_id, $separator . '— ' ) );
-        }
-
-        return $choices;
+    $choices = array();
+    foreach ( $categories as $category ) {
+        $choices[] = array( 'text' => $separator . $category->name, 'value' => $category->term_id );
+        $choices = array_merge( $choices, sort_categories_recursive( $category->term_id, $separator . '— ' ) );
     }
 
+    return $choices;
+}
+
+function sort_categories_hierarchically( $form ) {
     foreach ( $form['fields'] as &$field ) {
         if ( $field->type == 'post_category' && $field->inputType == 'checkbox' ) {
             $field->choices = sort_categories_recursive( 0, '' );
