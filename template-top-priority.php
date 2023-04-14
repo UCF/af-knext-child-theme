@@ -23,7 +23,29 @@
 				</div>
 
 				<!-- Right side: List of posts -->
-				<div class="col-12 col-md-9">
+				<div class="d-block">
+					<?php
+					if ( have_rows('priority_repeater') ) :
+						while ( have_rows('priority_repeater') ) : the_row();
+
+							// Get the text field value
+							$text_field_value = get_sub_field('priority_text');
+							$link_field_value = get_sub_field('priority_link')
+						?>
+						<div class="mt-2 mt-md-4 col-md-6">
+							<a class="media-background-container d-block w-100 h-100 hover-parent text-secondary hover-text-inverse text-decoration-none p-3 py-lg-4 px-lg-5 card card-outline-default" href="<?php echo $link_field_value; ?>" target="_blank" rel="noopener">
+								<div class="media-background object-fit-cover bg-inverse-t-3 hover-child hover-child-show fade" data-object-fit="cover"></div>
+								<h3 class="h5 my-3 heading-underline text-transform-none"><?php echo $text_field_value; ?></h3>
+							</a>
+						</div>
+					<?php
+						endwhile;
+					else :
+						// No rows found
+						echo '<p>No repeater rows found.</p>';
+					endif;
+					?>
+				</div>
 					<?php the_content(); ?>
 				</div>
 			</div>
