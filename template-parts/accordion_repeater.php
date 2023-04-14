@@ -1,3 +1,11 @@
+/**
+* Enables ACF repeater fields for both finance and business center accordions.
+* Page and template no longer in use
+*
+* @since 0.1.0
+* @author Mike Setzer
+**/
+
 <?php
 
 $post = isset( $post ) ? $post : get_queried_object();

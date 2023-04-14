@@ -6,6 +6,7 @@
 		<!-- Left menu -->
 		<div class="col-12 col-md-3 flex-last">
 			<h3 class="h5 mb-3">Categories</h3>
+			<a href="/priorities/" class="btn btn-info btn-block mb-2" role="button">Top Priorities</a>
 			<?php wp_nav_menu(array(
 				'theme_location' => 'category-menus',
 				'container' => 'nav',

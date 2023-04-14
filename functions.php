@@ -11,7 +11,7 @@ include_once KNEXT_THEME_DIR . 'includes/meta.php';
 // Add other includes to this file as needed.
 
 /**
- * Register category-menus menu location
+ * Register category and priority menus locations
  *
  * @since 0.2.1
  * @author Mike Setzer
@@ -19,7 +19,8 @@ include_once KNEXT_THEME_DIR . 'includes/meta.php';
 
 function af_knext_theme_register_menus() {
     register_nav_menus(array(
-        'category-menus' => __('Category Menus', 'af-knext-child-theme')
+        'category-menus' => __('Category Menus', 'af-knext-child-theme'),
+        'priority-menus' => __('Priority Menu', 'af-knext-child-theme')
     ));
 }
 add_action('after_setup_theme', 'af_knext_theme_register_menus');
@@ -27,7 +28,7 @@ add_action('after_setup_theme', 'af_knext_theme_register_menus');
 
 
 /**
- * Add CSS classes to category-menu li items
+ * Add CSS classes to menu li items
  *
  * @since 0.2.1
  * @author Mike Setzer
@@ -38,6 +39,10 @@ function my_custom_menu_item_classes($classes, $item, $args, $depth) {
         $classes[] = 'nav-item my-1 d-block'; // Add your custom class
     }
 
+    if ('priority-menus' === $args->theme_location) {
+    	$classes[] = 'nav-item my-1 d-block bg-inverse'; // Add your custom class
+    }
+
     //Array for special nav items
     $special_items = array('General', 'Finance', 'Human Resources', 'All Posts', 'Top Priority');
 
@@ -46,7 +51,7 @@ function my_custom_menu_item_classes($classes, $item, $args, $depth) {
     	$classes[] = ' pl-3 '; // Add custom class
     }
 
-    //Add custom class to special nav items
+    //Add black background to all priority menu items
     if ('category-menus' === $args->theme_location && in_array($item->title, $special_items)) {
         $classes[] = 'bg-inverse'; // Add 'bg-inverse' class
     }
@@ -58,7 +63,7 @@ add_filter('nav_menu_css_class', 'my_custom_menu_item_classes', 10, 4);
 
 
 /**
- * Add CSS classes to category-menu anchor items
+ * Add CSS classes to menu anchor items
  *
  * @since 0.2.1
  * @author Mike Setzer
@@ -69,10 +74,21 @@ function my_custom_menu_link_attributes($atts, $item, $args, $depth) {
         $atts['class'] = isset($atts['class']) ? $atts['class'] . ' nav-link' : 'nav-link'; // Add your custom class
     }
 
+    if ('priority-menus' === $args->theme_location) {
+    	$atts['class'] = isset($atts['class']) ? $atts['class'] . ' nav-link' : 'nav-link'; // Add your custom class
+    }
+
     //Check if nav item is General, Finance, or HR, and modify styles
     $special_items = array('General', 'Finance', 'Human Resources', 'All Posts', 'Top Priority');
 
+    //Set only main category items in category menu to white text
     if ('category-menus' === $args->theme_location && in_array($item->title, $special_items)) {
+        $existing_classes = isset($atts['class']) ? $atts['class'] : '';
+        $atts['class'] = $existing_classes . ' text-inverse'; // Add 'text-inverse' class
+    }
+
+    //Set all category items in priority menu to white text
+    if ('priority-menus' === $args->theme_location) {
         $existing_classes = isset($atts['class']) ? $atts['class'] : '';
         $atts['class'] = $existing_classes . ' text-inverse'; // Add 'text-inverse' class
     }
